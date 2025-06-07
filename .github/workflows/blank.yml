@@ -1,6 +1,6 @@
 name: testing workflow_variables
 
-on: 
+on:
   workflow_dispatch
 
 env:
@@ -12,7 +12,7 @@ jobs:
     env:
       Greeting: Hello
     steps:
-      - name: "say Hello"
+      - name: say Hello
         run: echo "$Greeting $First_Name is using $cloud!"
         env:
           First_Name: Tejas
