@@ -1,0 +1,27 @@
+name: Test user Input workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      number1:
+        description: 'First number'
+        default: '0'
+        required: true
+      number2:
+        description: 'Second number'
+        default: '0'
+        required: true
+
+jobs:
+  add_numbers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add numbers
+        id: sum
+        run: |
+          result=$(( ${{ github.event.inputs.number1 }} + ${{ github.event.inputs.number2 }} ))
+          echo "sum=$result" >> $GITHUB_OUTPUT
+
+      - name: Display sum
+        run: echo "The sum of ${{ github.event.inputs.number1 }} and ${{ github.event.inputs.number2 }} is ${{ steps.sum.outputs.sum }}"
